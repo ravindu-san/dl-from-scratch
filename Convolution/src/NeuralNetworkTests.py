@@ -1145,36 +1145,4 @@ class L2Loss:
 
 
 if __name__ == "__main__":
-
-    import sys
-    if sys.argv[-1] == "Bonus":
-        # sys.argv.pop()
-        loader = unittest.TestLoader()
-        bonus_points = {}
-        tests = [TestOptimizers2, TestInitializers, TestFlatten, TestConv, TestPooling, TestFullyConnected2,
-                 TestNeuralNetwork2]
-        percentages = [8, 5, 2, 45, 15, 2, 23]
-        total_points = 0
-        for t, p in zip(tests, percentages):
-            if unittest.TextTestRunner().run(loader.loadTestsFromTestCase(t)).wasSuccessful():
-                bonus_points.update({t.__name__: ["OK", p]})
-                total_points += p
-            else:
-                bonus_points.update({t.__name__: ["FAIL", p]})
-
-        import time
-        time.sleep(1)
-        print("=========================== Statistics ===============================")
-        exam_percentage = 3
-        table = []
-        for i, (k, (outcome, p)) in enumerate(bonus_points.items()):
-            table.append([i, k, outcome, "0 / {} (%)".format(p) if outcome == "FAIL" else "{} / {} (%)".format(p, p),
-                          "{:.3f} / 10 (%)".format(p / 100 * exam_percentage)])
-        table.append([])
-        table.append(["Ex2", "Total Achieved", "", "{} / 100 (%)".format(total_points),
-                      "{:.3f} / 10 (%)".format(total_points * exam_percentage / 100)])
-
-        print(tabulate.tabulate(table, headers=['Pos', 'Test', "Result", 'Percent in Exercise', 'Percent in Exam'],
-                                tablefmt="github"))
-    else:
-        unittest.main()
+    unittest.main()
